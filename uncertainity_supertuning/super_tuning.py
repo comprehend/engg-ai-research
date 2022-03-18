@@ -7,10 +7,10 @@ from sentence_transformers.evaluation import EmbeddingSimilarityEvaluator
 from sentence_transformers.readers import InputExample
 
 #set model-configuration details
-EPOCHS = 5
+EPOCHS = 15
 BATCH_SIZE = 16
 BASE_MODEL_PATH = "kamalkraj/bioelectra-base-discriminator-pubmed-pmc-lt"
-CKPT_PATH = "model_data/neg_bioelectra/"
+CKPT_PATH = "pretrained_models/NegBioElectra/"
 
 #load the data
 df = pd.read_excel("data/synthesized_data.xlsx",index_col=0)
