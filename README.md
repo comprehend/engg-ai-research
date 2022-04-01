@@ -9,8 +9,10 @@ Along with this we provide a synthesized dataset developed using T5 & Peagsus pa
 # Try the approach yourself
 
 Clone the branch using
-'git clone -b uncertainity-super-tuning https://github.com/comprehend/engg-ai-research.git'
+`git clone -b uncertainity-super-tuning https://github.com/comprehend/engg-ai-research.git`
 
-Create a vitual env and anctivate it, and navigate into 'uncertainity_super_tuning' branch and install the required libraries using
-'pip install -r requirements.txt'
+Create a vitual env and anctivate it, and navigate into `uncertainity_super_tuning` branch and install the required libraries using
+`pip install -r requirements.txt`
 
+## Super-tuning
+Super-tuning approach helps models understand negated and uncertainity context better in a given sentence. We propose that all models should go through this process before finetuning the model on any domain specific task. In our research paper _______________ we have compared the results of super-tuned vs non-super-tuned models sentence embeddings on negation context and it is clear that the super-tuning helps the model embeddings to be more generalized in terms of uncertainity context. Below is the depiction of comparision of 
