@@ -1,10 +1,10 @@
-# No means 'No'; a non improper embedding model with understanding of uncertainty context
-This repo's branch is for official implementation of the paper "No means 'No'; a non improper embedding model with understanding of uncertainty context".
+# No means 'No'; a non im-proper embedding model with understanding of uncertainty context
+This repo's branch is for the official implementation of the paper "No means 'No'; a non-im-proper embedding model with the understanding of uncertainty context".
 
 # DESCRIPTION
-The medical data are complex in nature as terms that appear in records usually appear in different contexts among which lies negated and uncertain texts which usually have great importance. There have been many models which detect cue and scopes in these texts and also have achieved SOTA in this task. 
-We too propose a super-tuning approach which enhances any natural language model's capabilities of understanding the negation & uncertainity context.
-Along with this we provide a synthesized dataset developed using T5 & Peagsus paraphraser.We super-tuned the BioELECTRA model on negation & speculation task on BioScope & Sherlock datasets and named the new model as NegBioELECTRA. The super-tuning of BioELECTRA helped us to achieve SOTA on benchmark in negation,speculation cue and scope detection on BioScope and Sherlock datasets. Our model detects not only cues but also states if the cue is of negation or speculation. For a detailed description and experimental results, please refer to our paper __________________.
+The medical data are complex in nature as terms that appear in records usually appear in different contexts among which lies negated and uncertain texts which usually have great importance. There have been many models which detect cues and scopes in these texts and also have achieved SOTA in this task. 
+We too propose a super-tuning approach that enhances any natural language model's capabilities of understanding the negation & uncertainty context.
+Along with this, we provide a synthesized dataset developed using T5 & Pegasus paraphraser. We super-tuned the BioELECTRA model on the negation & speculation task on BioScope & Sherlock datasets and named the new model NegBioELECTRA. The super-tuning of BioELECTRA helped us to achieve SOTA on benchmark in negation, speculation cue, and scope detection on BioScope and Sherlock datasets. Our model detects not only cues but also states if the cue is of negation or speculation. For a detailed description and experimental results, please refer to our paper __________________.
 
 # Try the approach yourself
 
@@ -15,11 +15,21 @@ Create a vitual env and anctivate it, and navigate into `uncertainity_super_tuni
 `pip install -r requirements.txt`
 
 ## Super-tuning
-Super-tuning approach helps models understand negated and uncertainity context better in a given sentence. We propose that all models should go through this process before finetuning the model on any domain specific task. In our research paper _______________ we have compared the results of super-tuned vs non-super-tuned models sentence embeddings on negation context and it is clear that the super-tuning helps the model embeddings to be more generalized in terms of uncertainity context. Below is the depiction of comparision of super-tuned vs non-supertuned biomodels
+The super-tuning approach uses SBERT architecture, and we have showcased BioELECTRA in code but you can use any model that is available in hugging face by just changing the hugging face architecture URL at the model configuration in `super_tuning.py` inside `uncertainity_super_tuning` folder. Also, feel free to tweak the hyperparameters epochs and batch_size. The dataset used is a synthesized dataset of Bioscope Abstracts data.
+
+```python
+#set model-configuration details
+EPOCHS = 15
+BATCH_SIZE = 16
+BASE_MODEL_PATH = "kamalkraj/bioelectra-base-discriminator-pubmed-pmc-lt"
+CKPT_PATH = "pretrained_models/NegBioElectra/"
+```
+
+Super-tuning approach helps models understand negated and uncertain context better in a given sentence. We propose that all models should go through this process before finetuning the model on any domain-specific task. In our research paper _______________ we have compared the results of super-tuned vs non-super-tuned models sentence embeddings in a negation context and it is clear that the super-tuning helps the model embeddings to be more generalized in terms of uncertainty context. Below is the depiction of the comparison of super-tuned vs non-super-tuned biomodels.
 
 ![Alt text](relative/path/to/img.jpg?raw=true "Title")
 
-The supertuning approaches uses SBERT architecture, and we have showcased BioELECTRA in code but you can use any model that is available in hugging face by just changing the hugging face architecture url at model configuration in `super_tuning.py` inside `uncertainity_super_tuning` folder. Also feel free to tweak the hyperparameters epochs and batch_size. The dataset used is a synthesized dataset of Bioscope Abstracts data.
+The super-tuning approach uses SBERT architecture, and we have showcased BioELECTRA in code but you can use any model that is available in hugging face by just changing the hugging face architecture URL at the model configuration in `super_tuning.py` inside `uncertainity_super_tuning` folder. Also, feel free to tweak the hyperparameters epochs and batch_size. The dataset used is a synthesized dataset of Bioscope Abstracts data.
 
 ```python
 #set model-configuration details
@@ -30,11 +40,11 @@ CKPT_PATH = "pretrained_models/NegBioElectra/"
 ```
 
 ## Fine Tuning
-We have given ipynb files for Bioscope, Sherlock cue and scope detection, for which you can use your own supertuned models by description above or feel free to use our hosted models at Huggingface 
+We have given ipynb files for Bioscope, Sherlock cue, and scope detection, for which you can use your own super-tuned models by the description above, or feel free to use our hosted models at Huggingface.
  * NegBioELECTRA (yet to be hosted)
  * NegBioBERT (yet to be hosted)
  * NegPubMedBERT (yet to be hosted)
-To tweak the hyperparams and train your own model use the variables under MODEL CONFIGURATION DETAILS, the following is the example:
+To tweak the hyper-params and train your own model use the variables under MODEL CONFIGURATION DETAILS, the following is the example:
 
 ```python
 BASE_PATH = "pretrained_models/"
@@ -43,7 +53,13 @@ LR_RATE = 3e-5
 CKPT_PATH = BASE_PATH + "bioscope_models/NegBioElectra_bioscope_scope_model"
 EPOCHS = 15
 ```
-Additionaly we provide `Evaluation_Bioscope_Scope_leaderboard.ipynb` file for testing the model's performance on Bioscope and `finetune_mednli.py` which gives a basic structure of how the model can be fine tuned for any other fine tuning tasks.
+The below diagram shows the overall view of the architecture proposed in terms of NegBioELECTRA
+
+![Alt text](relative/path/to/img.jpg?raw=true "Title")
+
+Additionally, we provide `Evaluation_Bioscope_Scope_leaderboard.ipynb` file for testing the model's performance on Bioscope and `finetune_mednli.py` which gives a basic structure of how the model can be fine-tuned for any other fine-tuning tasks. The following table shows the SOTA (State-of-the-art) results achieved by NegBioELECTRA compared to its predecessors.
+
+![Alt text](relative/path/to/img.jpg?raw=true "Title")
 
 ## Citing Information
 yet to be updated!!
