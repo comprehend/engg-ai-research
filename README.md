@@ -15,4 +15,35 @@ Create a vitual env and anctivate it, and navigate into `uncertainity_super_tuni
 `pip install -r requirements.txt`
 
 ## Super-tuning
-Super-tuning approach helps models understand negated and uncertainity context better in a given sentence. We propose that all models should go through this process before finetuning the model on any domain specific task. In our research paper _______________ we have compared the results of super-tuned vs non-super-tuned models sentence embeddings on negation context and it is clear that the super-tuning helps the model embeddings to be more generalized in terms of uncertainity context. Below is the depiction of comparision of 
+Super-tuning approach helps models understand negated and uncertainity context better in a given sentence. We propose that all models should go through this process before finetuning the model on any domain specific task. In our research paper _______________ we have compared the results of super-tuned vs non-super-tuned models sentence embeddings on negation context and it is clear that the super-tuning helps the model embeddings to be more generalized in terms of uncertainity context. Below is the depiction of comparision of super-tuned vs non-supertuned biomodels
+
+![Alt text](relative/path/to/img.jpg?raw=true "Title")
+
+The supertuning approaches uses SBERT architecture, and we have showcased BioELECTRA in code but you can use any model that is available in hugging face by just changing the hugging face architecture url at model configuration in `super_tuning.py` inside `uncertainity_super_tuning` folder. Also feel free to tweak the hyperparameters epochs and batch_size. The dataset used is a synthesized dataset of Bioscope Abstracts data.
+
+```python
+#set model-configuration details
+EPOCHS = 15
+BATCH_SIZE = 16
+BASE_MODEL_PATH = "kamalkraj/bioelectra-base-discriminator-pubmed-pmc-lt"
+CKPT_PATH = "pretrained_models/NegBioElectra/"
+```
+
+## Fine Tuning
+We have given ipynb files for Bioscope, Sherlock cue and scope detection, for which you can use your own supertuned models by description above or feel free to use our hosted models at Huggingface 
+ * NegBioELECTRA (yet to be hosted)
+ * NegBioBERT (yet to be hosted)
+ * NegPubMedBERT (yet to be hosted)
+To tweak the hyperparams and train your own model use the variables under MODEL CONFIGURATION DETAILS, the following is the example:
+
+```python
+BASE_PATH = "pretrained_models/"
+MODEL_PATH = BASE_PATH + "NegBioElectra/"
+LR_RATE = 3e-5
+CKPT_PATH = BASE_PATH + "bioscope_models/NegBioElectra_bioscope_scope_model"
+EPOCHS = 15
+```
+Additionaly we provide `Evaluation_Bioscope_Scope_leaderboard.ipynb` file for testing the model's performance on Bioscope and `finetune_mednli.py` which gives a basic structure of how the model can be fine tuned for any other fine tuning tasks.
+
+## Citing Information
+yet to be updated!!
